@@ -27,41 +27,16 @@ fn run_lua_within_neovim(case: &str) -> Output {
 }
 
 #[test]
-fn test_simple() {
-    let output = run_lua_within_neovim("simple");
-    assert!(
-        output.status.success(),
-        "{:?}",
-        String::from_utf8(output.stderr)
-    );
-}
+fn test_fixture_matrix() {
+    let cases = ["simple", "cunninghares", "pyproject", "error"];
 
-#[test]
-fn test_cunninghares() {
-    let output = run_lua_within_neovim("cunninghares");
-    assert!(
-        output.status.success(),
-        "{:?}",
-        String::from_utf8(output.stderr)
-    );
-}
-
-#[test]
-fn test_pyproject() {
-    let output = run_lua_within_neovim("pyproject");
-    assert!(
-        output.status.success(),
-        "{:?}",
-        String::from_utf8(output.stderr)
-    );
-}
-
-#[test]
-fn test_error() {
-    let output = run_lua_within_neovim("error");
-    assert!(
-        output.status.success(),
-        "{:?}",
-        String::from_utf8(output.stderr)
-    );
+    for case in cases {
+        let output = run_lua_within_neovim(case);
+        assert!(
+            output.status.success(),
+            "case `{}` failed: {:?}",
+            case,
+            String::from_utf8(output.stderr)
+        );
+    }
 }
