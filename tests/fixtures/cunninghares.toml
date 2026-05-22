@@ -1,0 +1,27 @@
+[group]
+name = "狡兔屋"
+leader = "妮可·德玛拉"
+
+[[members]]
+id = 1
+name = "妮可·德玛拉"
+english_name = "Nicole Demara"
+attribute = "以太"
+
+[[members]]
+id = 2
+name = "安比·德玛拉"
+english_name = "Anby Demara"
+attribute = "电"
+
+[[members]]
+id = 3
+name = "比利·奇德"
+english_name = "Billy Kid"
+attribute = "物理"
+
+[[members]]
+id = 4
+name = "猫又"
+english_name = "Nekomata"
+attribute = "物理"

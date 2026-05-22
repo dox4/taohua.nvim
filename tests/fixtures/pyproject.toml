@@ -1,0 +1,29 @@
+[project]
+name = "cunninhares"
+version = "2.8.0"
+description = "只要薪酬到位，狡兔屋随时为您服务！"
+readme = "Demara.md"
+requires-python = ">=3.12"
+license = { text = "Nicole Demara's License" }
+authors = [{ name = "Nicole Demara", email = "nicole@randomplay.com" }]
+
+dependencies = ["anby>=0", "billy>=2.0.0", "nekomata"]
+
+[project.optional-dependencies]
+dev = ["black", "ruff", "pytest"]
+
+[project.scripts]
+anby = "theater:movie"
+billy = "starlight:kick"
+nicole = "always:make_money"
+nekomata = "cat:friends"
+
+[tool.uv]
+dev-dependencies = ["fake-watch"]
+
+[tool.ruff]
+line-length = 42
+target-version = "py312"
+
+[tool.pytest.ini_options]
+addopts = "-v --fake"
