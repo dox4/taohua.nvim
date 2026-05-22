@@ -9,50 +9,39 @@ pub fn taohua() -> Dictionary {
     Dictionary::from_iter([("parse_toml", parse_fn)])
 }
 
+fn error_result(message: String) -> Dictionary {
+    Dictionary::from_iter([
+        ("ok", Object::from(false)),
+        ("error", Object::from(message)),
+    ])
+}
+
 fn parse_toml(filepath: String) -> Dictionary {
     let contents = match fs::read_to_string(&filepath) {
         Ok(contents) => contents,
         Err(err) => {
-            return Dictionary::from_iter([
-                ("ok", Object::from(false)),
-                (
-                    "error",
-                    Object::from(format!("Failed to read file {}: {}", filepath, err)),
-                ),
-            ]);
-        },
+            return error_result(format!("Failed to read file {}: {}", filepath, err));
+        }
     };
 
     let toml_value: toml::Value = match toml::from_str(&contents) {
         Ok(value) => value,
         Err(err) => {
-            return Dictionary::from_iter([
-                ("ok", Object::from(false)),
-                (
-                    "error",
-                    Object::from(format!(
-                        "Failed to parse TOML file {} with error: {}",
-                        filepath, err
-                    )),
-                ),
-            ]);
-        },
+            return error_result(format!(
+                "Failed to parse TOML file {} with error: {}",
+                filepath, err
+            ));
+        }
     };
 
     let obj = match toml_value.serialize(Serializer::new()) {
         Ok(obj) => obj,
         Err(err) => {
-            return Dictionary::from_iter([
-                ("ok", Object::from(false)),
-                (
-                    "error",
-                    Object::from(format!(
-                        "Failed to serialize TOML file {} with error: {}",
-                        filepath, err
-                    )),
-                ),
-            ]);
-        },
+            return error_result(format!(
+                "Failed to serialize TOML file {} with error: {}",
+                filepath, err
+            ));
+        }
     };
 
     Dictionary::from_iter([("ok", Object::from(true)), ("value", obj)])
