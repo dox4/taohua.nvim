@@ -2,6 +2,19 @@
 
 A Neovim plugin written in Rust (via `nvim-oxi`) for parsing TOML files.
 
+## Name
+
+`taohua` means "peach blossom" in Chinese, aka 「桃花」.
+
+### 大林寺桃花
+
+**唐・白居易**
+
+人间四月芳菲尽，  
+山寺**桃花**始盛开。  
+长恨春归无觅处，  
+不知转入此中来。
+
 ## Install and Usage
 
 Use with `lazy.nvim`:
