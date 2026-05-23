@@ -1,6 +1,8 @@
 DEBUG := 0
 CARGO_PROFILE_FLAG := --release
 
+.DEFAULT_GOAL := build-plugin
+
 .PHONY: help build-plugin test clean
 
 help:

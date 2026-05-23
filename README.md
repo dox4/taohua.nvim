@@ -2,25 +2,20 @@
 
 A Neovim plugin written in Rust (via `nvim-oxi`) for parsing TOML files.
 
-## Build
+## Install and Usage
 
-```bash
-make build-plugin
+Use with `lazy.nvim`:
+
+```lua
+{
+  "dox4/taohua.nvim",
+  build = "make",
+  -- use cargo build --release on Windows without make
+  -- build = "cargo build --release",
+}
 ```
 
-This builds the plugin artifact with Cargo.
-
-## Test
-
-```bash
-make test
-```
-
-The test target builds first, then runs headless Neovim integration tests.
-
-## Usage
-
-Add this project to `runtimepath`, then require the module in Lua:
+Then require the module in Lua:
 
 ```lua
 local taohua = require("taohua")
@@ -33,7 +28,31 @@ else
 end
 ```
 
-`parse_toml` returns a table with one of these shapes:
+## API
+
+`parse_toml(path)` returns one of these shapes:
 
 - success: `{ ok = true, value = <parsed_table> }`
 - failure: `{ ok = false, error = <message> }`
+
+## Development
+
+Build plugin artifact:
+
+```bash
+make build-plugin
+```
+
+or just:
+
+```bash
+make
+```
+
+Run tests:
+
+```bash
+make test
+```
+
+The test target builds first, then runs headless Neovim integration tests.
