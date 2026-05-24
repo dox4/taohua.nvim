@@ -13,10 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install Neovim
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y neovim
+    - name: Setup Neovim v0.10.0
+      uses: rhysd/action-setup-vim@v1.6.1
+      with:
+        neovim: true
+        version: v0.10.0
 
     - name: Verify Neovim
       run: nvim --version
